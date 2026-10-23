@@ -42,6 +42,25 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="float" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="mobile-web-app-capable" content="yes" />
+                <script dangerouslySetInnerHTML={{ __html: `
+          (function(){
+            function rm(){
+              var all = document.querySelectorAll('a,div,span,button');
+              for(var i=0;i<all.length;i++){
+                var t = all[i].textContent || '';
+                if(t.replace(/\\s/g,'').indexOf('PoweredbyNetlify')>-1){
+                  var p = all[i];
+                  while(p && p.parentNode){ p = p.parentNode; if(p===document.body) break; }
+                  if(p) p.remove();
+                }
+              }
+            }
+            rm();
+            if(window.MutationObserver){
+              new MutationObserver(rm).observe(document.documentElement,{childList:true,subtree:true});
+            }
+          })();
+        ` }} />
       </head>
       <body>
         <PWAManifestInjector />
