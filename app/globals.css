@@ -46,3 +46,7 @@
   --font-size-lg: 17px;  --font-size-xl: 20px;
   --font-size-2xl: 24px; --font-size-3xl: 30px;
 }
+/* 隐藏 Netlify 免费计划注入的 "Powered by Netlify" 徽章 */
+a[href*="netlify.com"] {
+  display: none !important;
+}
